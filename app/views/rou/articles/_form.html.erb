@@ -1,0 +1,80 @@
+<div class="hr hr-24"></div>
+<%= form_for [:rou, @article], :html => {:class => 'form-horizontal'}, :role => 'form' do |f| %>
+  <div class="form-group">
+    <label class="col-sm-1 control-label no-padding-right" for="form-field-1"> 标题 </label>
+
+    <div class="col-sm-9">
+      <%= f.text_field :title, :class => 'col-xs-10 col-sm-5' %>
+    </div>
+  </div>
+
+  <%if @article.errors.any? %>
+    <div>
+      <p>
+        <% @article.errors.full_messages.each do |message| %>
+           <%= message %>
+        <% end %>
+      </p>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <label class="col-sm-1 control-label no-padding-right" for="form-field-1">文章类别</label>
+
+    <div class="col-sm-9">
+      <div>
+        <%= f.select :category_id,Category.all.collect{|c|[c.name,c.id]},{},:class => 'width-80 chosen-select','data-placeholder'=>"Choose a Country..."%>
+
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="space-4"></div>
+  <div class="form-group">
+    <label class="col-sm-1 control-label no-padding-right" for="form-field-2">简介</label>
+
+    <div class="col-sm-9">
+      <%= f.text_area :introduce, :class => 'form-control', :rows => '10' %>
+    </div>
+  </div>
+
+  <div class="space-4"></div>
+  <div class="form-group">
+    <label class="col-sm-1 control-label no-padding-right" for="form-field-2"> 内容 </label>
+
+    <div class="col-sm-9">
+      <%= f.kindeditor :content, :window_onload => true,:editor_id => 'my_editor' %>
+    </div>
+  </div>
+
+  <div class="clearfix form-actions">
+    <div class="col-md-offset-3 col-md-9">
+      <button class="btn btn-info sub" type="button">
+        <i class="icon-ok bigger-110"></i>
+        提交
+      </button>
+
+      &nbsp; &nbsp; &nbsp;
+      <button class="btn" type="reset">
+        <i class="icon-undo bigger-110"></i>
+        重置
+      </button>
+    </div>
+  </div>
+
+  <div class="hr hr-24"></div>
+
+<% end %>
+<script>
+  $(function(){
+    $(".chosen-select").chosen();
+  });
+    $('.sub').eq(0).click(function(){
+      var text = my_editor.html();
+      $('#article_content').html(text);
+      $('.form-horizontal').submit();
+    })
+</script>
+<%= javascript_include_tag 'kindeditor/kindeditor' %>

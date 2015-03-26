@@ -1,0 +1,38 @@
+<div class="hr hr-24"></div>
+<%= form_for [:controllers, @category], :html => {:class => 'form-horizontal'}, :role => 'form' do |f| %>
+  <div class="form-group">
+    <label class="col-sm-1 control-label no-padding-right" for="form-field-1"> 标题 </label>
+
+    <div class="col-sm-9">
+      <%= f.text_field :name, :class => 'col-xs-10 col-sm-5' %>
+    </div>
+  </div>
+
+  <div class="space-4"></div>
+
+
+
+  <div class="clearfix form-actions">
+    <div class="col-md-offset-3 col-md-9">
+      <button class="btn btn-info sub" type="button">
+        <i class="icon-ok bigger-110"></i>
+        提交
+      </button>
+
+      &nbsp; &nbsp; &nbsp;
+      <button class="btn" type="reset">
+        <i class="icon-undo bigger-110"></i>
+        重置
+      </button>
+    </div>
+  </div>
+
+  <div class="hr hr-24"></div>
+
+<% end %>
+<script>
+
+  $('.sub').eq(0).click(function(){
+    $('.form-horizontal').submit();
+  })
+</script>

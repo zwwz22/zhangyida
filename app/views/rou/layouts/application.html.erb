@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<%= render 'rou/layouts/head' %>
+
+<body>
+<%= render 'rou/layouts/top' %>
+<div class="main-container" id="main-container">
+<script type="text/javascript">
+  try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+</script>
+
+<div class="main-container-inner">
+<a class="menu-toggler" id="menu-toggler" href="#">
+  <span class="menu-text"></span>
+</a>
+
+<!-- left -->
+<%= render 'rou/layouts/left' %>
+
+<!--main-->
+<%= yield %>
+  <!-- /.main-content -->
+
+</div><!-- /.main-container-inner -->
+
+<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+  <i class="icon-double-angle-up icon-only bigger-110"></i>
+</a>
+</div>
+<!-- /.main-container -->
+
+<!-- basic scripts -->
+
+<!-- inline scripts related to this page -->
+
+<script type="text/javascript">
+  jQuery(function($) {
+
+    $('#simple-colorpicker-1').ace_colorpicker({pull_right:true}).on('change', function(){
+      var color_class = $(this).find('option:selected').data('class');
+      var new_class = 'widget-header';
+      if(color_class != 'default')  new_class += ' header-color-'+color_class;
+      $(this).closest('.widget-header').attr('class', new_class);
+    });
+
+
+    // scrollables
+    $('.slim-scroll').each(function () {
+      var $this = $(this);
+      $this.slimScroll({
+        height: $this.data('height') || 100,
+        railVisible:true
+      });
+    });
+
+    /**$('.widget-box').on('ace.widget.settings' , function(e) {
+					e.preventDefault();
+				});*/
+
+
+
+      // Portlets (boxes)
+    $('.widget-container-span').sortable({
+      connectWith: '.widget-container-span',
+      items:'> .widget-box',
+      opacity:0.8,
+      revert:true,
+      forceHelperSize:true,
+      placeholder: 'widget-placeholder',
+      forcePlaceholderSize:true,
+      tolerance:'pointer'
+    });
+
+  });
+</script>
+
+</body>
+</html>
