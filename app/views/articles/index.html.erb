@@ -12,7 +12,7 @@
     <% @articles.each do |article| %>
       <div class="ui teal ribbon label"><a href="<%= article_path(:id =>article.id) %>" style="">《<%=article.title%></a> </div>
       <br/>
-      <%=  raw article.introduce%>
+      <%= raw truncate_html(article.content, length: 100, omission: '   ...') %>
       <br/>
       <br/>
       <a href="<%= article_path(:id =>article.id) %>" class="tiny ui active button">继续阅读</a>

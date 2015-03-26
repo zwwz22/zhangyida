@@ -1,0 +1,2 @@
+module Rou::AaHelper
+end

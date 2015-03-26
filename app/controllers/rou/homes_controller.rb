@@ -1,14 +1,11 @@
-class HomesController < ApplicationController
-  #doorkeeper_for :all
-
-
+class Rou::HomesController < Rou::ApplicationController
+  before_filter :current_user_info
   def index
-    @articles = Article.order('created_at desc').limit 6
+
   end
 
   def show
     redirect_to :action => 'index'
-
   end
 
   def new

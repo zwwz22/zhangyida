@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>狂奔的跳跳鱼</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <style type="text/css">
+    body {
+      background:url("<%= image_path('bg_main.jpg')%>") repeat-x fixed left bottom;
+    }
+    .top{
+      background: url("<%= image_path('6m.jpg')%>");
+    }
+    .ui.raised.segment{
+      box-shadow: none;
+    }
+
+
+  </style>
+  <style>
+    div.blog_content {
+      background-color: white;
+      width: 880px;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      opacity: 0.9;
+    }
+    .intro{
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+    }
+    .top{
+      padding: 10px;
+      position: relative;
+    }
+
+
+  </style>
+
+  <%= yield :css %>
+</head>
+<body>
+
+<!-- left -->
+
+<!-- top  -->
+<div class="ui fixed transparent inverted main menu">
+  <div class="container">
+    <div class="title item">
+      <a href="<%= homes_path %>"><b>狂奔的跳跳鱼</b></a>
+    </div>
+
+    <div class="right menu">
+
+      <a class="popup icon github item" title="查看Semantic UI在Github的项目信息" href="https://github.com/quirkyinc/semantic">
+        <i class="icon github"></i>
+      </a>
+      <div class="title item">
+        @ME：723932055
+      </div>
+    </div>
+  </div>
+</div>
+<div class="main container" >
+  <div class="blog_content" style="display: none">
+    <div class="top"  >
+
+      <div class="ui circular rotate reveal image" >
+        <%= image_tag 'dog.jpg',:class => 'visible content'  %>
+        <%= image_tag 'dog.jpg',:class => 'hidden content' %>
+      </div>
+      <div class="ui huge breadcrumb" style="float: right">
+        <a class="section" href="<%= homes_path %>">主页</a>
+        <div class="divider"> / </div>
+        <a class="section" href="<%= articles_path%>">文章</a>
+        <div class="divider"> / </div>
+        <div class="active section"><a class="section">疯狂跳跳鱼</a></div>
+      </div>
+
+      <div class="intro " ></div>
+    </div>
+
+
+    <div class="ui horizontal icon divider">
+      <i class="circular heart icon red"></i>
+    </div>
+
+    <div class="ui two column grid">
+      <div class="row">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+<% if flash.present? %>
+  <script>
+    <% flash.each do |name, msg| %>
+    <% next if msg.to_s == 'true' %>
+    show<%= if name.to_s == 'notice'; 'Success' else 'Error' end %>("<%= msg %>");
+    <% end %>
+  </script>
+<% end %>
+
+<script type="text/javascript">
+
+  $('.icon.sidebar').first().sidebar('toggle');
+  $(function(){
+    $('.blog_content').fadeTo(2000,0.87);
+
+  })
+</script>
+
+</body>
+</html>
