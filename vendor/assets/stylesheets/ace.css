@@ -9,7 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require css/bootstrap.min
- *= require css/font-awesome.min
+ *= require css/font-awesome.min.css.scss.erb
  *= require css/chosen
  *= require css/ace.min
  *= require css/ace-rtl.min
